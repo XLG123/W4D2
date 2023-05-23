@@ -1,22 +1,23 @@
-require_relative "all_employees"
-
 class Employee
-    include All_employees
 
-    attr_reader :salary
+    attr_reader :name, :title, :salary, :boss
 
-    def initialize(name,title,salary,boss)
-        @name = name 
-        @title = title 
-        @salary = salary
-        @boss = boss
-        self.add_employee
+    def initialize(name,title,salary,boss=nil)
+      @name = name 
+      @title = title 
+      @salary = salary
+      @boss = boss
+      has_boss(boss)
     end
-
 
     def bonus(multiplier)
-        bonus = self.salary * multiplier
+      bonus = self.salary * multiplier
     end
 
+    def has_boss(boss)
+      if !self.boss.nil?
+        boss.employees << self
+      end
+    end
 
 end
