@@ -20,7 +20,10 @@ class Piece
     def pos=(val)
         @pos = val
     end
-
+    
+    def inspect
+        symbol
+    end
 
     private 
     def move_into_check?(end_pos)

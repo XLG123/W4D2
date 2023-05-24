@@ -2,11 +2,8 @@ require_relative "piece"
 
 class Rook < Piece
 
-    attr_reader :symbol
-
-    def initialize
-        super
-        @symbol = :white ? ♖ : ♜
+    def symbol
+      '♜'
     end
 
     private 

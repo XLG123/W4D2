@@ -2,11 +2,12 @@ require_relative "piece"
 
 class Queen < Piece
 
-    attr_reader :symbol
+    def symbol
+        '♛'
+    end
 
-    def initialize
-        super
-        @symbol = :white ? ♕ : ♛
+    def inspect
+        symbol
     end
 
     private

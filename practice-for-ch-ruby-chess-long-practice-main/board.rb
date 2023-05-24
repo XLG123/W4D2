@@ -6,6 +6,8 @@ require_relative "queen"
 require_relative "king"
 require_relative "null_piece"
 
+# require 'byebug'
+
 class Board
     def initialize
         @rows = Array.new(8) { Array.new(8) }
@@ -15,29 +17,22 @@ class Board
     
     def place_pieces
         back_ranks = [Rook,Knight,Bishop,Queen,King,Bishop,Knight,Rook]
+        # pawn_row = [Pawn,Pawn,Pawn,Pawn,Pawn,Pawn,Pawn,Pawn]
 
         @rows.each_with_index do |row, idx_row|
-            if 
+
+            if idx_row == 0 || idx_row == 1
+                color = :black
+            elsif idx_row == 6 || idx_row == 7
+                color = :white
+            end
+
             row.each_with_index do |col, idx_col|
 
                 if idx_row == 0 || idx_row == 7
-                    row[idx_col] = back_ranks[idx_col].new(color)
+                    # debugger
+                    row[idx_col] = back_ranks[idx_col].new(color, self, [idx_row, idx_col])
                 end
-
-                pawn_row = [pawn,pawn,pawn,pawn,pawn,pawn,pawn,pawn]
-                # if (idx_row == 0 || idx_row == 7)
-                #     if idx_col == 0 || idx_col == 7
-                #         @rows[[row, col]] = Rook.new(:white, self,[0,0])
-                #     elsif idx_col == 1 || idx_col == 6
-                #         @rows[[row, col]] = Knight.new(:white, self,[0,1])
-                #     elsif idx_col == 2 || idx_col == 5
-                #         @rows[[row, col]] = Bishop.new(:white, self,[0,2])
-                #     elsif idx_col ==  3
-                #         @rows[[row, col]] = Queen.new(:white, self,[0,3])
-                #     elsif idx_col == 4
-                #         @rows[[row, col]] = King.new(:white, self,[0,4])
-                #     end
-                # end
                 
             end
         end

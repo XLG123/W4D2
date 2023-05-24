@@ -2,11 +2,8 @@ require_relative "piece"
 
 class Knight < Piece
 
-    attr_reader :symbol
-
-    def initialize
-        super
-        @symbol = :white ? ♘ : ♞
+    def symbol
+        '♞'
     end
     
     protected 
