@@ -32,15 +32,12 @@ class Board
             row.each_with_index do |col, idx_col|
 
                 if idx_row == 0 || idx_row == 7
-                    # debugger
                     row[idx_col] = back_ranks[idx_col].new(color, self, [idx_row, idx_col])
                     
                 elsif idx_row == 1 || idx_row == 6
-                    # debugger
                     row[idx_col] = pawn_row[idx_col].new(color, self, [idx_row, idx_col])
                 else 
                     row[idx_col] = middle_rows.new(color, self, [idx_row, idx_col])
-                    
                 end
 
                 
@@ -62,11 +59,9 @@ class Board
     def move_piece(start_pos,end_pos)
         row_s, col_s = start_pos
         row_e, col_e = end_pos
-        raise "No piece at start_pos" if @rows[row_s][col_s].nil?
-        raise "Cannot move to end_pos" if !@rows[row_e][col_e].nil?
-        value = @rows[row_s][col_s]
-        @rows[row_e][col_e] = value
-        @rows[row_s][col_s] = nil
+        raise "No piece at start_pos" if self[[row_s, col_s]] == NullPiece
+        # raise "Cannot move to end_pos" if self[[row_e, col_e]] != NullPiece
+        self[[row_s, col_s]], self[[row_e, col_e]] = self[[row_e, col_e]], self[[row_s, col_s]]
     end
 
 end

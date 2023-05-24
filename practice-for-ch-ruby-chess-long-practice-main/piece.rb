@@ -10,7 +10,7 @@ class Piece
     end
 
     def empty?
-        self.pos.empty?
+        @board[@pos].empty?
     end
 
     def valid_moves
