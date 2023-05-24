@@ -1,7 +1,12 @@
+require_relative "piece"
+
 class Bishop < Piece
+
+    attr_reader :symbol
+
     def initialize
         super
-        @symbol = :B
+        @symbol = :white ? ♗ : ♝
     end
 
     private 
