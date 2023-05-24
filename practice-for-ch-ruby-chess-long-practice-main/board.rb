@@ -1,9 +1,10 @@
-require_relative "piece"
+# require_relative "piece"
 require_relative "rook"
-# require_relative "knight"
-# require_relative "bishop"
-# require_relative "queen"
-# require_relative "king"
+require_relative "knight"
+require_relative "bishop"
+require_relative "queen"
+require_relative "king"
+require_relative "null_piece"
 
 class Board
     def initialize
@@ -11,22 +12,32 @@ class Board
         place_pieces    
     end
 
+    
     def place_pieces
+        back_ranks = [Rook,Knight,Bishop,Queen,King,Bishop,Knight,Rook]
+
         @rows.each_with_index do |row, idx_row|
+            if 
             row.each_with_index do |col, idx_col|
-                if (idx_row == 0 || idx_row == 7)
-                    if idx_col == 0 || idx_col == 7
-                        @rows[[row, col]] = Rook.new
-                    elsif idx_col == 1 || idx_col == 6
-                        @rows[[row, col]] = Knight.new
-                    elsif idx_col == 2 || idx_col == 5
-                        @rows[[row, col]] = Bishop.new
-                    elsif idx_col ==  3
-                        @rows[[row, col]] = Queen.new
-                    elsif idx_col == 4
-                        @rows[[row, col]] = King.new
-                    end
+
+                if idx_row == 0 || idx_row == 7
+                    row[idx_col] = back_ranks[idx_col].new(color)
                 end
+
+                pawn_row = [pawn,pawn,pawn,pawn,pawn,pawn,pawn,pawn]
+                # if (idx_row == 0 || idx_row == 7)
+                #     if idx_col == 0 || idx_col == 7
+                #         @rows[[row, col]] = Rook.new(:white, self,[0,0])
+                #     elsif idx_col == 1 || idx_col == 6
+                #         @rows[[row, col]] = Knight.new(:white, self,[0,1])
+                #     elsif idx_col == 2 || idx_col == 5
+                #         @rows[[row, col]] = Bishop.new(:white, self,[0,2])
+                #     elsif idx_col ==  3
+                #         @rows[[row, col]] = Queen.new(:white, self,[0,3])
+                #     elsif idx_col == 4
+                #         @rows[[row, col]] = King.new(:white, self,[0,4])
+                #     end
+                # end
                 
             end
         end
