@@ -7,11 +7,12 @@ require_relative "king"
 require_relative "null_piece"
 require_relative "pawn"
 
+
 # require 'byebug'
 
 class Board
     def initialize
-        @rows = Array.new(8) { Array.new(8) }
+        @rows = Array.new(8) { Array.new(8,NullPiece) }
         place_pieces    
     end
 
@@ -19,7 +20,7 @@ class Board
     def place_pieces
         back_ranks = [Rook,Knight,Bishop,Queen,King,Bishop,Knight,Rook]
         pawn_row = [Pawn,Pawn,Pawn,Pawn,Pawn,Pawn,Pawn,Pawn]
-        middle_rows = NullPiece
+        
 
         @rows.each_with_index do |row, idx_row|
 
@@ -36,8 +37,7 @@ class Board
                     
                 elsif idx_row == 1 || idx_row == 6
                     row[idx_col] = pawn_row[idx_col].new(color, self, [idx_row, idx_col])
-                else 
-                    row[idx_col] = middle_rows.new(color, self, [idx_row, idx_col])
+                
                 end
 
                 
